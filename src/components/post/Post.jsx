@@ -1,29 +1,24 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './post.css';
 
-const Post = () => {
+const Post = ({ post }) => {
     return (
         <div className='post'>
-            <img
-                className='postImg'
-                src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                alt=""
-            />
+            {post.photo && (<img className='postImg' src={post.photo} alt="" />)}
             <div className="postInfo">
-                <div className="postCats">
-                    <span className="postCat">Music</span>
-                    <span className="postCat">Life</span>
+                <div className="postCats">{
+                    post.categories.map(category => (
+                        <span className="postCat">{category.name}</span>
+                    ))}
                 </div>
-                <span className="postTitle">
-                    Lorem ipsum dolor sit amet
-                </span>
-                <hr/>
-                <span className="postDate">1 Hour ago</span>
+                <Link to={`/post/${post._id}`} className='link'>
+                    <span className="postTitle">{post.title}</span>
+                </Link>
+                <hr />
+                <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
             </div>
-                <p className="postDesc">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe iusto illum explicabo repudiandae veritatis. Saepe optio, quisquam iure quas, quo obcaecati cupiditate doloribus voluptatibus maxime deserunt officiis in, quia ea.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe iusto illum explicabo repudiandae veritatis. Saepe optio, quisquam iure quas, quo obcaecati cupiditate doloribus voluptatibus
-                </p>
+            <p className="postDesc">{post.desc}</p>
         </div>
     );
 };
