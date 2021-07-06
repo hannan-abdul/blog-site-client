@@ -16,7 +16,7 @@ const Home = () => {
             setPosts(res.data)
         }
         fetchPosts()
-    }, [search]);
+    }, [search]); 
 
     return (
         <>

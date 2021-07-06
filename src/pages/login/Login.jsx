@@ -7,7 +7,7 @@ import axios from 'axios';
 const Login = () => {
     const userRef = useRef();
     const passwordRef = useRef();
-    const { user, dispatch, isFetching } = useContext(Context);
+    const { dispatch, isFetching } = useContext(Context);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,37 +22,36 @@ const Login = () => {
             dispatch({ type: "LOGIN_FAILURE" });
         }
     };
-    console.log(isFetching);
-
+    
     return (
-        <div className='login'>
-            <span className='loginTitle'>Login</span>
+        <div className="login">
+            <span className="loginTitle">Login</span>
             <form className="loginForm" onSubmit={handleSubmit}>
                 <label>Username</label>
                 <input
-                    className='loginInput'
                     type="text"
-                    placeholder='Enter Your Username....'
+                    className="loginInput"
+                    placeholder="Enter your username..."
                     ref={userRef}
                 />
                 <label>Password</label>
                 <input
-                    className='loginInput'
                     type="password"
-                    placeholder='Enter Your Password....'
+                    className="loginInput"
+                    placeholder="Enter your password..."
                     ref={passwordRef}
                 />
-                <button type="submit" className="loginButton">
+                <button className="loginButton" type="submit" disabled={isFetching}>
                     Login
                 </button>
             </form>
             <button className="loginRegisterButton">
-                <Link className='link' to='/register'>
+                <Link className="link" to="/register">
                     Register
                 </Link>
             </button>
         </div>
     );
-};
+}
 
 export default Login;

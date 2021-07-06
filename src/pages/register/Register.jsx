@@ -11,18 +11,18 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(false)
+        setError(false);
         try {
             const res = await axios.post("/auth/register", {
                 username,
                 email,
                 password,
             });
+            console.log(res)
             res.data && window.location.replace("/login")
         } catch (err) {
             setError(true);
         }
-
     };
 
     return (
